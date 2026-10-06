@@ -70,3 +70,20 @@ Referencia al 2026-10-06 (v0.1.0): **34 pruebas en 2 archivos**, tipos limpios.
 Etiquetas `vX.Y.Z` y `CHANGELOG.md`. Cambiar el contrato HTTP o el esquema D1
 sube la versión menor mientras sea `0.x`. Una migración nueva va en
 `migrations/` con número siguiente; nunca se edita una ya aplicada.
+
+---
+
+## Orchestron
+
+Este repositorio es un proyecto **backend** del producto en Orchestron
+(`/Volumes/DevSSD/Developer/OrquestacionMultiplataforma`), junto a «Pulse iOS» y
+«Pulse Backend». **Hasta el 2026-10-06 no estaba dado de alta**: el registro
+propuesto está en `docs/orchestron/SINCRONIZACION-2026-10-06.md` de AION-iOS.
+
+- El `projectId` se resuelve por la ruta, nunca de memoria:
+  `orchestron_list_workspaces` → `orchestron_get_workspace` → el proyecto cuyo
+  `repoUrl` sea `/Volumes/DevSSD/Developer/AION-BusinessBackend`.
+- Al empezar: `orchestron_get_platform_context` con ese `projectId`.
+- Antes de modificar un archivo: `orchestron_check_path`.
+- Al terminar: actualizar la fase con `outputSummary` (evidencia: `pnpm test`).
+  Una fase pasa a `completed` solo con evidencia y con `/linea-base` sin regresiones.
