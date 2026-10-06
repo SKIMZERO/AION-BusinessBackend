@@ -1,0 +1,23 @@
+{
+  "name": "aion-business-backend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.20.0",
+  "scripts": {
+    "dev": "wrangler dev --env development",
+    "deploy:development": "wrangler deploy --env development",
+    "deploy:production": "wrangler deploy --env production",
+    "migrate:development": "wrangler d1 migrations apply pulse-business-development --env development --remote",
+    "migrate:production": "wrangler d1 migrations apply pulse-business-production --env production --remote",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.22.0",
+    "@cloudflare/workers-types": "5.20260726.1",
+    "typescript": "7.0.2",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.120.1"
+  }
+}

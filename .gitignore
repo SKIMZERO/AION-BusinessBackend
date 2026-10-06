@@ -1,0 +1,34 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Cloudflare Wrangler (estado local, no debe ir al repo)
+.wrangler/
+
+# Secretos y entorno — NUNCA al repo (solo se versiona el ejemplo)
+.dev.vars*
+.env*
+!.dev.vars.example
+
+# Certificados / claves APNs
+*.p8
+
+# TypeScript / build
+dist/
+*.tsbuildinfo
+coverage/
+
+# Lockfile de npm (usamos pnpm)
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+yarn-error.log*
+
+# Editores / sistema operativo
+.DS_Store
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,50 @@
+name = "pulse-business-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-11"
+
+# Alta y revisión de negocios (docs/NEGOCIOS-DISENO.md §13 de AION-iOS).
+#
+# Base de datos, bucket y secretos PROPIOS: nunca los de pulse-recovery-api ni
+# los de SkimZeroVaultBackend. Si se filtrara el servicio de recuperación, no
+# debe salir de ahí ni un domicilio.
+#
+# Secretos (wrangler secret put … --env <ambiente>), nunca en este archivo:
+#   BUSINESS_INDEX_PEPPER  32+ bytes aleatorios. Índices de CURP, RFC y límites.
+#   OPERATOR_TOKENS        {"<operador>": "<sha256 hex de su token>"}, uno por persona.
+#
+# Los id de D1 salen de `wrangler d1 create`; hasta entonces, marcador.
+
+[env.development.vars]
+ENVIRONMENT = "development"
+REVIEW_KEY_ID = "review-dev-1"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "pulse-business-development"
+database_id = "REPLACE_WITH_D1_ID_FROM_WRANGLER_D1_CREATE"
+migrations_dir = "migrations"
+
+[[env.development.r2_buckets]]
+binding = "VAULT"
+bucket_name = "pulse-business-vault-development"
+
+# Producción. La purga corre en el cron y, por si el plan gratuito ya no deja
+# otro cron (recovery anota que los 5 de la cuenta están usados), también cada
+# vez que un operador abre la cola de revisión.
+[env.production]
+workers_dev = true
+preview_urls = false
+
+[env.production.vars]
+ENVIRONMENT = "production"
+REVIEW_KEY_ID = "REPLACE_WITH_REVIEW_KEY_ID_FROM_SIGNED_RULES_DOCUMENT"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "pulse-business-production"
+database_id = "REPLACE_WITH_D1_ID_FROM_WRANGLER_D1_CREATE"
+migrations_dir = "migrations"
+
+[[env.production.r2_buckets]]
+binding = "VAULT"
+bucket_name = "pulse-business-vault-production"

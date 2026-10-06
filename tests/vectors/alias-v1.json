@@ -1,0 +1,265 @@
+{
+  "protocol": "aion-alias-v1",
+  "about": "Vectores del alias compartidos entre iOS (Tests/PulseCoreTests/AliasVectorTests.swift), el directorio (AION-Backend apps/directory/test/alias.test.ts) y Android. Se copian tal cual; se añaden casos, no se cambian. Reglas en docs/ALIAS-DISENO.md §3.3, §3.4 y §3.15.",
+  "skeleton": [
+    {
+      "input": "damaso_sanz",
+      "skeleton": "damasosanz"
+    },
+    {
+      "input": "damasosanz",
+      "skeleton": "damasosanz"
+    },
+    {
+      "input": "darnaso_sanz",
+      "skeleton": "damasosanz"
+    },
+    {
+      "input": "DAMASO_SANZ",
+      "skeleton": "damasosanz"
+    },
+    {
+      "input": "bernardo_lopez",
+      "skeleton": "bemardolopez"
+    },
+    {
+      "input": "bemardo_lopez",
+      "skeleton": "bemardolopez"
+    },
+    {
+      "input": "vvalter_ruiz",
+      "skeleton": "walterrulz"
+    },
+    {
+      "input": "silvia_lima",
+      "skeleton": "sllvlallma"
+    },
+    {
+      "input": "rnrn_vvvv",
+      "skeleton": "mmww"
+    },
+    {
+      "input": "ana_5ilva",
+      "skeleton": "anasllva"
+    },
+    {
+      "input": "juan_perez",
+      "skeleton": "juanperez"
+    }
+  ],
+  "valid": [
+    {
+      "input": "@damaso_sanz.482106",
+      "canonical": "damaso_sanz.482106",
+      "display": "@damaso_sanz.482106",
+      "spoken": "482 106",
+      "uniquenessKey": "damasosanz.482106"
+    },
+    {
+      "input": "damaso_sanz.482106",
+      "canonical": "damaso_sanz.482106",
+      "display": "@damaso_sanz.482106",
+      "spoken": "482 106",
+      "uniquenessKey": "damasosanz.482106"
+    },
+    {
+      "input": "  @Damaso_Sanz.482106\n",
+      "canonical": "damaso_sanz.482106",
+      "display": "@damaso_sanz.482106",
+      "spoken": "482 106",
+      "uniquenessKey": "damasosanz.482106"
+    },
+    {
+      "input": "jo_li.100000",
+      "canonical": "jo_li.100000",
+      "display": "@jo_li.100000",
+      "spoken": "100 000",
+      "uniquenessKey": "joll.100000"
+    },
+    {
+      "input": "maria_lopez.999999",
+      "canonical": "maria_lopez.999999",
+      "display": "@maria_lopez.999999",
+      "spoken": "999 999",
+      "uniquenessKey": "marlalopez.999999"
+    },
+    {
+      "input": "darnaso_sanz.482106",
+      "canonical": "darnaso_sanz.482106",
+      "display": "@darnaso_sanz.482106",
+      "spoken": "482 106",
+      "uniquenessKey": "damasosanz.482106"
+    }
+  ],
+  "invalid": [
+    {
+      "input": "damaso_sanz.099999",
+      "why": "el número va de 100000 a 999999"
+    },
+    {
+      "input": "damaso_sanz.1000000",
+      "why": "6 cifras exactas"
+    },
+    {
+      "input": "damaso_sanz.48210",
+      "why": "6 cifras exactas"
+    },
+    {
+      "input": "damaso.482106",
+      "why": "dos partes unidas por _"
+    },
+    {
+      "input": "damaso_sanz_ruiz.482106",
+      "why": "dos partes, no tres"
+    },
+    {
+      "input": "d_sanz.482106",
+      "why": "cada parte de 2 a 15 letras"
+    },
+    {
+      "input": "maximilianoalejandro_ruiz.482106",
+      "why": "cada parte de 2 a 15 letras"
+    },
+    {
+      "input": "damaso_sanz_482106",
+      "why": "el número va tras un punto"
+    },
+    {
+      "input": "damaso sanz.482106",
+      "why": "sin espacios dentro"
+    },
+    {
+      "input": "damaso_sanz.482 106",
+      "why": "sin espacios dentro"
+    },
+    {
+      "input": "dámaso_sanz.482106",
+      "why": "solo a-z, sin acentos"
+    },
+    {
+      "input": "damaso_sanz.48210６",
+      "why": "solo cifras ASCII"
+    },
+    {
+      "input": "@@damaso_sanz.482106",
+      "why": "una sola @"
+    },
+    {
+      "input": "damaso_sanz.482106.1",
+      "why": "un solo punto"
+    },
+    {
+      "input": "damas0_sanz.482106",
+      "why": "solo letras en la base"
+    },
+    {
+      "input": "",
+      "why": "vacío"
+    }
+  ],
+  "suggest": [
+    {
+      "firstName": "Damaso",
+      "lastName": "Sanz",
+      "base": "damaso_sanz"
+    },
+    {
+      "firstName": "María José",
+      "lastName": "De la Cruz",
+      "base": "mariajose_delacruz"
+    },
+    {
+      "firstName": "Ñandú",
+      "lastName": "Pérez",
+      "base": "nandu_perez"
+    },
+    {
+      "firstName": "Zoë",
+      "lastName": "O'Brien",
+      "base": "zoe_obrien"
+    },
+    {
+      "firstName": "Jo",
+      "lastName": "Li",
+      "base": "jo_li"
+    },
+    {
+      "firstName": "A",
+      "lastName": "Sanz",
+      "base": null
+    },
+    {
+      "firstName": "Maximiliano Alejandro",
+      "lastName": "Rodríguez",
+      "base": "maximilianoalej_rodriguez"
+    },
+    {
+      "firstName": "José-Luis",
+      "lastName": "García Márquez",
+      "base": "joseluis_garciamarquez"
+    },
+    {
+      "firstName": "Damaso",
+      "lastName": "",
+      "base": null
+    }
+  ],
+  "reserved": [
+    {
+      "base": "ai_on",
+      "reserved": true
+    },
+    {
+      "base": "aion_lopez",
+      "reserved": true
+    },
+    {
+      "base": "alonso_perez",
+      "reserved": false
+    },
+    {
+      "base": "soporte_tecnico",
+      "reserved": true
+    },
+    {
+      "base": "adm_in",
+      "reserved": true
+    },
+    {
+      "base": "pulse_ruiz",
+      "reserved": true
+    },
+    {
+      "base": "ana_ruiz",
+      "reserved": false
+    },
+    {
+      "base": "silvia_pulse",
+      "reserved": true
+    },
+    {
+      "base": "sis_tema",
+      "reserved": true
+    },
+    {
+      "base": "oficina_central",
+      "reserved": false
+    }
+  ],
+  "discriminatorRange": [
+    100000,
+    999999
+  ],
+  "reservedWords": [
+    "aion",
+    "skimzero",
+    "pulse",
+    "soporte",
+    "ayuda",
+    "admin",
+    "oficial",
+    "seguridad",
+    "verificado",
+    "sistema"
+  ]
+}

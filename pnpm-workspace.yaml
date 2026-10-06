@@ -1,0 +1,7 @@
+# pnpm lee aquí la configuración del proyecto. esbuild empaqueta el Worker y
+# workerd es el runtime local de `wrangler dev`/`deploy`; los dos traen scripts
+# de instalación nativos. Solo estos dos están aprobados: cualquier otra
+# dependencia sigue sin poder ejecutar scripts al instalarse.
+allowBuilds:
+  esbuild: true
+  workerd: true
