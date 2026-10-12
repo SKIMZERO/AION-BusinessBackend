@@ -96,7 +96,7 @@ del mismo directorio.
 
 Reglas que mandan sobre cualquier otra prioridad de trabajo:
 
-1. **Una ola a la vez.** Solo se trabaja en tareas cuyo `epic` pertenece a la ola activa (o a los carriles de clientes `08-carril-android`, `09-cliente-web`, `10-cliente-windows`, cada uno en su repo). Nada entra en la
+1. **Una ola a la vez.** Solo se trabaja en tareas cuyo `epic` pertenece a la ola activa (o al carril `08-carril-android`; `09-cliente-web` y `10-cliente-windows` son post-beta). Nada entra en la
    cola sin pasar por el plan; una idea nueva va a una propuesta, no a una rama.
 2. **Siguiente tarea:** la primera de `tasks.json`, en orden de array, con `status: pending` y todas sus dependencias en `done`. Marcarla
    `in_progress` antes de tocar código; abrir solo `epics/<epic>.md`; ejecutar todos sus `verify`; marcar `done`; commit `E{n}-T{m}: …`
@@ -105,11 +105,10 @@ Reglas que mandan sobre cualquier otra prioridad de trabajo:
 4. **Orchestron:** `orchestron_check_path` → `orchestron_claim_path` → heartbeat → `orchestron_release_path`. Ruta congelada o reservada = parada.
 5. **Congelado, no se toca:** bundle IDs `com.skimzero.pulse*`, App Group, servicio de llavero `com.skimzero.pulse.v1`, iCloud, `_pulsemesh-v1`,
    `pulse-relay-v3`, collapse-id `pulse`, DO `PulseMailbox`, `Vendor/OpenMLS`, y los literales de `AION-iOS/docs/LITERALES-CONGELADOS.md`.
-6. **Contratos:** todo cambio de cable o de formato persistido lleva vector dorado compartido (Swift/TS/Kotlin). Los cambios de cable solo entran en la ola 2 (v4).
+6. **Contratos:** todo cambio de cable o de formato persistido lleva vector dorado compartido (Swift/TS/Kotlin). Los cambios de cable solo entran en la ola 2 (v4). Única excepción aprobada: E1-T16 (campo opcional dentro del payload cifrado, sin tocar marco ni AD).
 7. **Puertas:** `/linea-base check` sin regresión no aceptada, `/auditor-zero` en protocolo/cripto/relay/persistencia, `/sincroniza` al cerrar.
-8. **Routing:** Opus diseña y revisa; Sonnet implementa con brief y ruta reclamada; Codex revisa los P0. Máximo 2 relanzamientos.
-9. **Relevo Claude ↔ Codex:** quién hace y quién revisa cada tarea está en `asignacion.json`; el estado, la asignación viva, el consumo y los traspasos viven solo en Orchestron. Al pasar del 85 % del límite de 5 h, del 90 % del semanal o del 85 % de contexto: cerrar el paso atómico, commit WIP, paquete `_relevo` en la fase y reasignar. Protocolo completo en `relevo/RELEVO.md`.
-10. **Claude audita y corrige todo lo que haga Codex** antes de darlo por terminado o proponerlo para fusionar: misma estructura, convenciones y arquitectura que la propuesta de Claude. Si no cumple, Claude lo corrige o lo devuelve con instrucciones, y deja `_auditoriaClaude` en la fase de Orchestron. Codex revisa lo de Claude solo como segunda opinión.
-
-11. **Propuestas de Codex (/adversario):** Codex puede proponer mejoras, registradas en Orchestron como «[Propuesta Codex]», pero **nunca las implementa**. Claude las aprueba o rechaza con motivo en la auditoría de esa tarea; solo las aprobadas entran al plan como tareas nuevas, con ID nuevo.
-12. **Relevo · Cadena:** `relevo cadena --ola <N>` encadena tareas dentro de una ola, un agente a la vez, y para en la frontera de ola y en cualquier puerta humana. No arranca si el preflight de calidad (MCP, hooks, daemon de codebase-memory, línea base) falla. Nunca hace push, fusión, despliegue ni sello. Detalle en `relevo/RELEVO.md` §6.
+8. **Routing (sin Codex, decisión del 2026-10-12):** Opus diseña, decide seguridad y revisa; Sonnet implementa con brief autocontenido y ruta reclamada. Máximo 2 relanzamientos; al tercero, Opus ejecuta.
+9. **Asignación:** quién ejecuta y quién revisa cada tarea está en `asignacion.json`; el estado y el consumo real viven solo en Orchestron. `relevo/` está archivado: no hay traspasos entre agentes.
+10. **Revisión independiente en P0:** las tareas con `revisionIndependiente: true` (fusión de troncos, migraciones, protocolo, relay, cripto, persistencia) no se fusionan sin la revisión de un subagente Opus con contexto limpio, que no vio la implementación, más `/auditor-zero` profundo, registrada en la fase de Orchestron.
+11. **Propuestas (/adversario):** sus casos y mejoras son candidatos; solo entran al plan como tareas nuevas, con ID nuevo, si Opus los aprueba.
+12. **Alcance de la beta:** iOS + Mac + Android. Las tareas con `postBeta: true` (web y Windows) no empiezan hasta cerrar E5-T2.
